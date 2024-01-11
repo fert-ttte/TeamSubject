@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.callendar.service.impl.CallendarMapper">
+	
+
+
+	<insert id="save" parameterType="Map">
+	    <if test='end_ != null'>
+		   INSERT INTO callendar VALUES(SEQ_CALLENDAR.NEXTVAL,#{title},TO_DATE(#{start_},'YYYY-MM-DD HH24:MI:SS'),TO_DATE(#{end_}, 'YYYY-MM-DD HH24:MI:SS'),#{alram})
+		</if>
+		<if test='end_ == null'>
+		   INSERT INTO callendar VALUES(SEQ_CALLENDAR.NEXTVAL,#{title},TO_DATE(#{start_},'YYYY-MM-DD HH24:MI:SS'),NULL,#{alram})
+		</if>
+		
+	</insert>
+	
+	<select id="findAll" resultType="callendarDto">
+		SELECT * FROM callendar
+	</select>
+	
+	
+	<select id="findOne" resultType="callendarDto" parameterType="Map">
+		SELECT * FROM callendar where no=#{no}
+	</select>
+	
+	<delete id="deleteByKey" parameterType="Map">
+		DELETE callendar WHERE no=#{no}
+	</delete>
+	
+	
+	<update id="updateByKey" parameterType="Map">
+		
+		<if test='end_ != null'>
+		   UPDATE  callendar SET title=#{title}, start_=TO_DATE(#{start_},'YYYY-MM-DD HH24:MI:SS'), end_=TO_DATE(#{end_}, 'YYYY-MM-DD HH24:MI:SS'), alram=#{alram}  where no=#{no}
+		</if>
+		<if test='end_ == null'>
+		   UPDATE  callendar SET title=#{title}, start_=TO_DATE(#{start_},'YYYY-MM-DD HH24:MI:SS'), end_=NULL, alram=#{alram}  where no=#{no}
+		</if>
+	</update>
+	
+	
+
+</mapper>
