@@ -4,9 +4,10 @@ server:
   
 spring:
   datasource:
-    
+    //이 부분은 일부러 삭제 했습니다.
     hikari:
       auto-commit: true
+      
       
   mvc:
     view:
