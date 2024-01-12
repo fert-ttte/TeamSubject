@@ -30,7 +30,6 @@ public class CallendarConfig {
 			factoryBean.setDataSource(dataSource);
 			factoryBean.setTypeAliasesPackage("com.example.demo");
 			factoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/*.xml"));
-			//SqlSessionFactoryBean의 getObject()로 SqlSessionFactory객체 얻기
 			factory=factoryBean.getObject();
 		
 		}
